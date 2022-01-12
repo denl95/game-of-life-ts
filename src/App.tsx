@@ -1,24 +1,24 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useMemo } from 'react';
 import './App.css';
+import { BIG_GRID, LINE_GRID, SQUARE_GRID, STACKED_GRID, THIRD_GRID } from './constants';
+import Grid from './Grid/Grid';
+import { generateRandomSquareGrid } from './hooks/utils';
 
 function App() {
+  const randomGrid = useMemo(() => generateRandomSquareGrid(), []);
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Game of Life</h1>
       </header>
+      <main>
+        <Grid initialGrid={SQUARE_GRID} />
+        <Grid initialGrid={LINE_GRID} />
+        <Grid initialGrid={THIRD_GRID} />
+        <Grid initialGrid={STACKED_GRID} />
+        <Grid initialGrid={BIG_GRID} />
+        <Grid initialGrid={randomGrid} />
+      </main>
     </div>
   );
 }
